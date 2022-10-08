@@ -13,8 +13,6 @@ export class UsersEntity {
   @Column()
   registration: string;
   @Column()
-  classesId: string;
-  @Column()
   role: string;
   @Column({ transformer: hashPasswordTransform })
   password: string;

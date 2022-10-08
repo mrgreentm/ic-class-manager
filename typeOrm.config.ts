@@ -3,7 +3,7 @@ import { UsersEntity } from './src/users/entities/users.entity';
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { $Users1665190527062 } from './database/migrations/1665190527062-$users';
+import { $Users1665190527063 } from './database/migrations/1665190527063-$users';
 
 config();
 
@@ -13,9 +13,9 @@ export default new DataSource({
   type: 'mysql',
   host: process.env.TYPEORM_HOST,
   port: +process.env.TYPEORM_PORT,
-  username: process.env.TYPEORM_USERNAME,
-  database: process.env.TYPEORM_DATABASE,
-  password: process.env.TYPEORM_PASSWORD,
+  username: process.env.TYPEORM_USERNAME || 'root',
+  database: process.env.TYPEORM_DATABASE || 'ic_class_manager',
+  password: process.env.TYPEORM_PASSWORD || 'nikolatesla06@',
   entities: [UsersEntity],
-  migrations: [$Users1665190527062],
+  migrations: [$Users1665190527063],
 });

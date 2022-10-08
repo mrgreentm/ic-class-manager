@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export class $Users1665190527062 implements MigrationInterface {
-  name = '$users1665190527062';
+export class $Users1665190527063 implements MigrationInterface {
+  name = '$users1665190527063';
   private users: Table = new Table({
     name: 'users',
     columns: [
@@ -34,12 +34,6 @@ export class $Users1665190527062 implements MigrationInterface {
       {
         name: 'registration',
         type: 'INTEGER',
-        isNullable: false,
-      },
-      {
-        name: 'classes_id',
-        type: 'VARCHAR',
-        length: '255',
         isNullable: false,
       },
       {
