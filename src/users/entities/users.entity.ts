@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { hashPasswordTransform } from './../../helper/cripto-transform';
+import { hashPasswordTransform } from '../../helper/cripto-transform';
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity({ name: 'students' })
-export class StudentsEntity {
+@Entity({ name: 'users' })
+export class UsersEntity {
   @PrimaryGeneratedColumn()
   id: number;
   @Column()
@@ -14,6 +14,8 @@ export class StudentsEntity {
   registration: string;
   @Column()
   classesId: string;
+  @Column()
+  role: string;
   @Column({ transformer: hashPasswordTransform })
   password: string;
   @CreateDateColumn({ name: 'created_at' })

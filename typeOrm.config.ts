@@ -1,9 +1,9 @@
 /* eslint-disable prettier/prettier */
-import { $StudentsMigration1665188476156 } from './database/migrations/1665188476156-$students';
-import { StudentsEntity } from './src/students/entities/student.entity';
+import { UsersEntity } from './src/users/entities/users.entity';
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
+import { $Users1665190527062 } from './database/migrations/1665190527062-$users';
 
 config();
 
@@ -16,6 +16,6 @@ export default new DataSource({
   username: process.env.TYPEORM_USERNAME,
   database: process.env.TYPEORM_DATABASE,
   password: process.env.TYPEORM_PASSWORD,
-  entities: [StudentsEntity],
-  migrations: [$StudentsMigration1665188476156],
+  entities: [UsersEntity],
+  migrations: [$Users1665190527062],
 });
