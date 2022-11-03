@@ -1,3 +1,4 @@
+import { AuthModule } from './auth/auth.module';
 import { UsersEntity } from './users/entities/users.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -21,6 +22,7 @@ import { UsersModule } from './users/users.module';
       migrations: ['database/migrations/**/*.js'],
     }),
     UsersModule,
+    AuthModule,
     DatabaseModule,
   ],
   controllers: [AppController],

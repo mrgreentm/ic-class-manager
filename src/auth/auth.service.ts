@@ -1,0 +1,33 @@
+/* eslint-disable prettier/prettier */
+import { UserInterface } from './../users/interfaces/users.interface';
+import { AuthDto } from './dtos/auth.dto';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { compareSync } from 'bcrypt';
+import { JwtService } from '@nestjs/jwt';
+import { AuthTypeInterface } from './dtos/auth-type';
+import { UsersService } from '../users/users.service';
+
+@Injectable()
+export class AuthService {
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService,
+  ) {}
+
+  async validateUser({ email, password }: AuthDto): Promise<AuthTypeInterface> {
+    const user = await this.usersService.findUserByEmail(email);
+    const validPassword = compareSync(password, user.password);
+
+    const token = await this.jwtToken(user);
+
+    if (!validPassword) {
+      throw new UnauthorizedException('A senha do usuário está incorreta!');
+    }
+    return { user, token: token };
+  }
+
+  private async jwtToken(user: UserInterface): Promise<string> {
+    const payload = { username: user.name, sub: user.id };
+    return this.jwtService.signAsync(payload);
+  }
+}
